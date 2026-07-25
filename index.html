@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ГОВНО-Technologies | Welcome</title>
+    <!-- Шрифт для агрессивного/дерзкого стиля -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0c0f;
+            font-family: 'Space Grotesk', monospace;
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* "Грязный" градиентный фон */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(80, 40, 20, 0.3), transparent 70%),
+                        repeating-linear-gradient(45deg, rgba(255, 180, 40, 0.02) 0px, rgba(255, 180, 40, 0.02) 2px, transparent 2px, transparent 8px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 2rem;
+            padding: 2rem;
+            backdrop-filter: blur(2px);
+            text-align: center;
+        }
+
+        /* Эффект "сломанного" стекла или глитча */
+        .badge {
+            display: block;
+            width: fit-content;
+            background: #2a1e12;
+            border-left: 4px solid #e34c26;
+            padding: 0.4rem 1rem;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin: 0 auto 2rem;
+            color: #ffb347;
+            box-shadow: 3px 3px 0px #4a2c1a;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 12vw, 7rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(135deg, #ffcc88, #e34c26, #aa2e1e);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+        }
+
+        /* Глитч-эффект для подзаголовка */
+        .glitch {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #bc9a6c;
+            background: #1e1a16;
+            display: block;
+            width: fit-content;
+            padding: 0.5rem 1.2rem;
+            letter-spacing: 1px;
+            margin: 0 auto 2rem;
+            position: relative;
+            word-break: break-word;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1e1a16;
+            padding: 0.5rem 1.2rem;
+        }
+
+        .glitch::before {
+            color: #ff8888;
+            z-index: -1;
+            transform: translate(-2px, -1px);
+            opacity: 0.6;
+        }
+
+        .glitch::after {
+            color: #88ffaa;
+            z-index: -2;
+            transform: translate(2px, 1px);
+            opacity: 0.5;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            font-weight: 400;
+            max-width: 700px;
+            margin: 1.5rem auto;
+            border-top: 1px dashed #e34c2644;
+            border-bottom: 1px dashed #e34c2644;
+            padding: 1rem 0;
+            color: #cdcdcd;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: #14181fcc;
+            backdrop-filter: blur(8px);
+            border: 1px solid #2e2a24;
+            padding: 0.9rem;
+            flex: 1 1 0;
+            min-width: 0;
+            max-width: 165px;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            border-color: #e34c26;
+            background: #1e1914cc;
+        }
+
+        .feature-icon {
+            font-size: 2.2rem;
+            margin-bottom: 0.7rem;
+            display: block;
+        }
+
+        .feature-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+            color: #ffb347;
+        }
+
+        .feature-desc {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .cta-button {
+            background: #e34c26;
+            border: none;
+            color: #0a0c0f;
+            font-weight: 800;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-family: 'Space Grotesk', monospace;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            margin: 2rem 0 1rem;
+            transition: 0.15s linear;
+            box-shadow: 6px 6px 0px #5e2a1a;
+        }
+
+        .cta-button:hover {
+            background: #ff7043;
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0px #3e1e12;
+        }
+
+        .cta-button:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px #3e1e12;
+        }
+
+        .footer-note {
+            margin-top: 3rem;
+            font-size: 0.7rem;
+            opacity: 0.5;
+            border-top: 1px solid #2c241c;
+            padding-top: 1.5rem;
+            display: inline-block;
+            width: 100%;
+        }
+
+        /* Анимация "падения" как намёк на стабильность */
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-0.5deg); }
+            20% { transform: translate(-2px, 0px) rotate(0.5deg); }
+            30% { transform: translate(2px, 1px) rotate(0deg); }
+            100% { transform: translate(0,0) rotate(0); }
+        }
+
+        .warning-badge {
+            background: #1a120c;
+            padding: 0.3rem 0.9rem;
+            font-size: 0.72rem;
+            font-weight: bold;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: #c9bdae;
+        }
+        .warning-badge .lead {
+            color: #ffb347;
+            font-weight: 900;
+            font-size: 1.15em;
+        }
+
+        @media (max-width: 700px) {
+            .container { padding: 1rem; margin: 1rem; }
+            .features { gap: 0.5rem; }
+            .feature-card { padding: 0.7rem; border-radius: 16px; }
+            .feature-icon { font-size: 1.9rem; margin-bottom: 0.5rem; }
+            .feature-title { font-size: 0.82rem; }
+            .feature-desc { font-size: 0.62rem; }
+            .calc { padding: 1rem; }
+            .calc-result { font-size: 1.8rem; }
+            .calc-expr { font-size: 1.45rem; }
+            .calc-keys button { padding: 0.8rem 0; font-size: 1.1rem; }
+        }
+
+        /* === Говно-вычислитель (модалка-калькулятор) === */
+        .calc-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 6, 8, 0.85);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            z-index: 100;
+        }
+        .calc-overlay.open { display: flex; }
+
+        .calc {
+            width: 100%;
+            max-width: 360px;
+            background: #14181f;
+            border: 1px solid #2e2a24;
+            border-radius: 24px;
+            padding: 1.25rem;
+            box-shadow: 8px 8px 0 #5e2a1a, 0 24px 60px rgba(0, 0, 0, 0.6);
+            animation: calcPop 0.2s ease;
+        }
+        @keyframes calcPop {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .calc-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+        .calc-title {
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #ffb347;
+        }
+        .calc-close {
+            background: none;
+            border: none;
+            color: #e0e0e0;
+            font-size: 1.4rem;
+            line-height: 1;
+            cursor: pointer;
+            padding: 0 4px;
+        }
+        .calc-close:hover { color: #e34c26; }
+
+        .calc-screen {
+            background: #0a0c0f;
+            border: 1px solid #2e2a24;
+            border-radius: 14px;
+            padding: 0.9rem 1rem;
+            min-height: 90px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: right;
+            overflow: hidden;
+        }
+        .calc-expr {
+            color: #ffd9a8;
+            font-size: 1.7rem;
+            font-weight: 600;
+            min-height: 1.1em;
+            word-break: break-all;
+        }
+        .calc-result {
+            color: #fff;
+            font-size: 2.1rem;
+            font-weight: 700;
+            line-height: 1.1;
+            word-break: break-all;
+        }
+        .calc-comment {
+            color: #ffaa77;
+            font-size: 0.74rem;
+            min-height: 2.4em;
+            margin: 0.7rem 0 0.9rem;
+            text-align: left;
+            line-height: 1.3;
+        }
+
+        .calc-keys {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+        }
+        .calc-keys button {
+            font-family: 'Space Grotesk', monospace;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #e0e0e0;
+            background: #1e2129;
+            border: none;
+            border-radius: 14px;
+            padding: 0.95rem 0;
+            cursor: pointer;
+            transition: transform 0.07s ease, background 0.15s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .calc-keys button:active { transform: translateY(2px); }
+        .calc-keys .op { background: #2a1e12; color: #ffb347; }
+        .calc-keys .clear { background: #3a1414; color: #ff8a6a; }
+        .calc-keys .eq { background: #e34c26; color: #0a0c0f; font-weight: 800; }
+        .calc-keys .span2 { grid-column: span 2; }
+
+        /* === Зал инвесторов === */
+        .investors {
+            margin: 2.5rem 0 1rem;
+        }
+        .investors-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ffb347;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.3rem;
+        }
+        .investors-row {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: nowrap;
+        }
+        .investor {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+            min-width: 0;
+        }
+        .investor-pic {
+            width: 165px;
+            height: 165px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #e34c26;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+            transition: transform 0.18s ease, border-color 0.18s ease;
+            display: block;
+        }
+        .investor-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 28%;
+            display: block;
+        }
+        .investor-pic:hover {
+            transform: translateY(-4px) scale(1.04);
+            border-color: #ffb347;
+        }
+        .investor-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #e0e0e0;
+            background: #1e1a16;
+            border: 1px solid #2e2a24;
+            border-radius: 20px;
+            padding: 0.4rem 1rem;
+            text-decoration: none;
+            max-width: 165px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+        }
+        .investor-name:hover {
+            color: #0a0c0f;
+            background: #ffb347;
+            border-color: #ffb347;
+        }
+        .invest-btn {
+            margin-top: 1.6rem;
+            background: transparent;
+            border: 2px dashed #e34c26;
+            color: #ffb347;
+            font-family: 'Space Grotesk', monospace;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            padding: 0.7rem 1.4rem;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .invest-btn:hover {
+            background: #e34c26;
+            color: #0a0c0f;
+            border-style: solid;
+        }
+
+        /* Модалка "стать инвестором" (переиспользует .calc-overlay) */
+        .inv-modal {
+            position: relative;
+            width: 100%;
+            max-width: 420px;
+            background: #14181f;
+            border: 1px solid #2e2a24;
+            border-radius: 24px;
+            padding: 1.6rem;
+            box-shadow: 8px 8px 0 #5e2a1a, 0 24px 60px rgba(0, 0, 0, 0.6);
+            animation: calcPop 0.2s ease;
+            text-align: left;
+        }
+        .inv-close {
+            position: absolute;
+            top: 0.9rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: #e0e0e0;
+            font-size: 1.4rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+        .inv-close:hover { color: #e34c26; }
+        .inv-modal h3 {
+            color: #ffb347;
+            font-size: 1.25rem;
+            margin-bottom: 0.9rem;
+            padding-right: 1.5rem;
+        }
+        .inv-modal p {
+            color: #cdcdcd;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1.3rem;
+        }
+        .inv-tg {
+            display: inline-block;
+            background: #e34c26;
+            color: #0a0c0f;
+            font-weight: 800;
+            text-decoration: none;
+            padding: 0.8rem 1.4rem;
+            border-radius: 12px;
+            box-shadow: 4px 4px 0 #5e2a1a;
+            transition: all 0.15s ease;
+        }
+        .inv-tg:hover {
+            background: #ff7043;
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 #3e1e12;
+        }
+        .inv-hint {
+            margin-top: 1rem;
+            font-size: 0.78rem;
+            color: #8a8278;
+        }
+
+        /* Мобильные правки для зала инвесторов (после базовых, чтобы перебить порядок) */
+        @media (max-width: 700px) {
+            .investors-row { gap: 0.5rem; }
+            .investor-pic { width: 104px; height: 104px; }
+            .investor-name { font-size: 0.7rem; max-width: 100px; padding: 0.32rem 0.6rem; }
+            .investors-title { font-size: 1.05rem; }
+            .invest-btn { font-size: 0.8rem; padding: 0.6rem 1rem; }
+        }
+
+        /* === Счётчик посещений (для рекламодателей) === */
+        .visit-counter {
+            position: fixed;
+            bottom: 12px;
+            right: 12px;
+            z-index: 50;
+            background: rgba(20, 24, 31, 0.92);
+            border: 1px solid #2e2a24;
+            border-left: 3px solid #e34c26;
+            border-radius: 10px;
+            padding: 6px 10px;
+            font-size: 0.7rem;
+            color: #c9bdae;
+            line-height: 1.35;
+            text-align: right;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+            pointer-events: none;
+        }
+        .visit-counter #visitCount {
+            color: #ffb347;
+            font-weight: 700;
+        }
+        .vc-since {
+            display: block;
+            opacity: 0.55;
+            font-size: 0.62rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="warning-badge">
+            <span class="lead">Г</span>оловной <span class="lead">О</span>фис <span class="lead">В</span>айбкодинга <span class="lead">Н</span>а <span class="lead">О</span>тъ€би$ь
+        </div>
+        <div class="badge">
+            SINCE 2026 • NO GUARANTEES
+        </div>
+        
+        <h1>ГОВНО<br>TECHNOLOGIES</h1>
+        
+        <div class="glitch" data-text="[ unreliability as a service ]">
+            [ unreliability as a service ]
+        </div>
+        
+        <div class="features">
+            <div class="feature-card">
+                <span class="feature-icon">🐞</span>
+                <div class="feature-title">Legacy-first</div>
+                <div class="feature-desc">Каждый баг — это фича. Стабильность переоценена.</div>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">⏳</span>
+                <div class="feature-title">Медленная загрузка</div>
+                <div class="feature-desc">У вас будет время выпить кофе. Дважды.</div>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">💸</span>
+                <div class="feature-title">Дорогой энтерпрайз</div>
+                <div class="feature-desc">Цены как у топ-1, качество — как у гаража.</div>
+            </div>
+        </div>
+
+        <div class="tagline">
+            🛠️ Создаём цифровые решения, которые почти работают.<br>
+            Инновации на грани фола. Поддержка? Забудьте.
+        </div>
+
+        <!-- Зал инвесторов -->
+        <div class="investors">
+            <div class="investors-title">Проинвестировали в говно:</div>
+            <div class="investors-row">
+                <div class="investor">
+                    <a class="investor-pic" href="https://v101etta.github.io/violetta-portfolio/" target="_blank" rel="noopener">
+                        <img src="inv1.jpg" alt="Инвестор 1" loading="lazy">
+                    </a>
+                    <a class="investor-name" href="https://v101etta.github.io/violetta-portfolio/" target="_blank" rel="noopener">инвестор 1</a>
+                </div>
+                <div class="investor">
+                    <a class="investor-pic" href="https://v101etta.github.io/violetta-portfolio/" target="_blank" rel="noopener">
+                        <img src="inv2.jpg" alt="Инвестор 2" loading="lazy">
+                    </a>
+                    <a class="investor-name" href="https://v101etta.github.io/violetta-portfolio/" target="_blank" rel="noopener">инвестор 2</a>
+                </div>
+                <div class="investor">
+                    <a class="investor-pic" href="https://v101etta.github.io/violetta-portfolio/" target="_blank" rel="noopener">
+                        <img src="inv3.jpg" alt="Инвестор 3" loading="lazy">
+                    </a>
+                    <a class="investor-name" href="https://v101etta.github.io/violetta-portfolio/" target="_blank" rel="noopener">инвестор 3</a>
+                </div>
+            </div>
+            <button class="invest-btn" id="investBtn">💰 стать инвестором говна</button>
+        </div>
+
+        <button class="cta-button" id="surpriseBtn">
+            🤡 ПОПРОБОВАТЬ ДЕМО 🤡
+        </button>
+
+        <div class="footer-note">
+            Говно-Technologies — не несёт ответственности за потерю данных, нервов и чувства юмора.<br>
+            * любое сходство с реальными компаниями случайно.
+        </div>
+    </div>
+
+    <!-- Говно-вычислитель: модалка-калькулятор, который НИКОГДА не отвечает правильно -->
+    <div class="calc-overlay" id="calcModal">
+        <div class="calc" role="dialog" aria-modal="true" aria-label="Говно-вычислитель">
+            <div class="calc-head">
+                <span class="calc-title">🧮 Говно-вычислитель v0.1</span>
+                <button class="calc-close" id="calcClose" aria-label="Закрыть">✕</button>
+            </div>
+            <div class="calc-screen">
+                <div class="calc-expr" id="calcExpr">&nbsp;</div>
+                <div class="calc-result" id="calcResult">0</div>
+            </div>
+            <div class="calc-comment" id="calcComment">Введи пример. Ответ гарантированно неверный.</div>
+            <div class="calc-keys">
+                <button class="clear" data-act="clear">C</button>
+                <button data-act="back">⌫</button>
+                <button class="op" data-val="÷">÷</button>
+                <button class="op" data-val="×">×</button>
+                <button data-val="7">7</button>
+                <button data-val="8">8</button>
+                <button data-val="9">9</button>
+                <button class="op" data-val="−">−</button>
+                <button data-val="4">4</button>
+                <button data-val="5">5</button>
+                <button data-val="6">6</button>
+                <button class="op" data-val="+">+</button>
+                <button data-val="1">1</button>
+                <button data-val="2">2</button>
+                <button data-val="3">3</button>
+                <button data-val=".">.</button>
+                <button class="span2" data-val="0">0</button>
+                <button class="eq span2" data-act="equals">=</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модалка: стать инвестором говна -->
+    <div class="calc-overlay" id="invModal">
+        <div class="inv-modal">
+            <button class="inv-close" id="invClose" aria-label="Закрыть">✕</button>
+            <h3>💩 Стать инвестором говна</h3>
+            <p>Вы можете опубликовать любое своё фото (или фото вашей организации) прямо здесь, на главной — за инвестицию в говно.</p>
+            <a class="inv-tg" href="https://t.me/vi0lett_mood" target="_blank" rel="noopener">📩 Написать СЕО Говно-Технолоджис</a>
+            <div class="inv-hint">Telegram: @vi0lett_mood — пишите СЕО Говно-Технолоджис</div>
+        </div>
+    </div>
+
+    <!-- Счётчик посещений (для рекламодателей) -->
+    <div class="visit-counter" id="visitCounter" title="Реальный счётчик посещений сайта">
+        👁 <span id="visitCount">…</span> просмотров
+        <span class="vc-since">с 19.06.2026</span>
+    </div>
+
+    <script>
+        // === Говно-вычислитель ===
+        // Считает по-настоящему, но результат всегда подменяет — правильного не покажет НИКОГДА.
+        const calcModal = document.getElementById('calcModal');
+        const elExpr = document.getElementById('calcExpr');
+        const elResult = document.getElementById('calcResult');
+        const elComment = document.getElementById('calcComment');
+        const calcBox = calcModal.querySelector('.calc');
+
+        // Комментарии к ответам: подходящие старые приколы + новые калькуляторные
+        const comments = [
+            "🔥 Ваш запрос обрабатывается на печатной машинке. Ждите...",
+            "🎉 Поздравляем! Вы сломали демостенд. Пришлите нам резюме.",
+            "🔄 Идёт обновление до Говно 2.0 (на самом деле нет).",
+            "🧑‍💻 Единственный разработчик уволился. Логику забрал с собой.",
+            "🎰 Калькулятор работает в 8% случаев. Сегодня не ваш день.",
+            "📉 Ответ примерно такой. Плюс-минус вся правда.",
+            "🐞 Это не баг, это альтернативная математика.",
+            "😎 Округлили в свою пользу.",
+            "🤷 Ну почти же. А тебе зачем точнее?",
+            "💸 За точный ответ нужно пополнить счёт на $999.",
+            "🧠 Считали в уме. Ум был занят."
+        ];
+
+        // Когда калькулятор хамит вместо ответа
+        const rudeBig = ["НЕТ", "🤡", "🖕", "не-а", "ха!", "🙅"];
+        const rudeComments = [
+            "🧮 Иди сам считать учись.",
+            "😤 Не барское это дело — считать.",
+            "🙄 Считай сама, мне за это не платят.",
+            "🤖 Наш ИИ подумал над примером и решил не отвечать.",
+            "💅 У нас лапки, а не калькулятор.",
+            "🫷 Не скажу. Принципиально."
+        ];
+
+        // Мемные «дикие» числа
+        const wildNumbers = [69, 420, 8, 9000, 100500, 1337, 42, 666, -1, 88, 0];
+
+        let expr = '';      // что ввёл пользователь (в «красивом» виде с × ÷ −)
+        let locked = false; // после "=" следующий ввод начинает заново
+
+        function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+        function render() {
+            elExpr.innerHTML = expr ? expr : '&nbsp;';
+        }
+
+        function resetScreen(comment) {
+            expr = '';
+            locked = false;
+            elResult.textContent = '0';
+            elComment.textContent = comment || 'Введи пример. Ответ гарантированно неверный.';
+            render();
+        }
+
+        function press(val) {
+            if (locked) { expr = ''; locked = false; elResult.textContent = '0'; elComment.textContent = ' '; }
+            expr += val;
+            render();
+        }
+
+        function backspace() {
+            if (locked) return;
+            expr = expr.slice(0, -1);
+            render();
+        }
+
+        // Настоящее значение: число, либо 'err' (бред), либо 'inf' (деление на ноль)
+        function realValue(s) {
+            const clean = s.replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-').replace(/[^0-9+\-*/.]/g, '');
+            const trimmed = clean.replace(/[+\-*/.]+$/, '');
+            if (!trimmed) return 'err';
+            try {
+                const v = Function('"use strict"; return (' + trimmed + ')')();
+                if (typeof v !== 'number' || Number.isNaN(v) || !isFinite(v)) return 'inf';
+                return v;
+            } catch (e) {
+                return 'err';
+            }
+        }
+
+        // Главная магия: из настоящего значения делаем заведомо НЕправильный ответ
+        function makeWrong(real) {
+            const roll = Math.random();
+            if (roll < 0.28) {
+                return { big: pick(rudeBig), comment: pick(rudeComments) };
+            }
+            let wrong;
+            if (roll < 0.68) {
+                wrong = Math.round(real) + pick([1, 2, 3, -1, -2, -3, 5, -5, 7, 11]); // чуть мимо
+            } else {
+                wrong = pick(wildNumbers); // полная дичь
+            }
+            if (wrong === real) wrong = real + 1; // правильный ответ запрещён
+            return { big: String(wrong), comment: pick(comments) };
+        }
+
+        function equals() {
+            let big, comment;
+            if (expr.trim() === '') {
+                big = '🫥';
+                comment = '🧮 Введи хоть что-нибудь, гений.';
+            } else {
+                const real = realValue(expr);
+                if (real === 'err') {
+                    big = '🤯';
+                    comment = 'Это даже я не осилил. Попробуй по-человечески.';
+                } else if (real === 'inf') {
+                    big = '∞💥';
+                    comment = '➗ Делить на ноль нельзя. Но мы попробовали. Вселенная схлопнулась.';
+                } else {
+                    const w = makeWrong(real);
+                    big = w.big;
+                    comment = w.comment;
+                }
+            }
+            elResult.textContent = big;
+            elComment.textContent = comment;
+            locked = true;
+            calcBox.style.animation = 'shake 0.3s ease-in-out';
+            setTimeout(() => { calcBox.style.animation = 'calcPop 0.2s ease'; }, 300);
+        }
+
+        // Открытие/закрытие модалки
+        function openCalc() { calcModal.classList.add('open'); resetScreen(); }
+        function closeCalc() { calcModal.classList.remove('open'); }
+
+        document.getElementById('surpriseBtn').addEventListener('click', openCalc);
+        document.getElementById('calcClose').addEventListener('click', closeCalc);
+        calcModal.addEventListener('click', (e) => { if (e.target === calcModal) closeCalc(); });
+
+        // Модалка "стать инвестором говна"
+        const invModal = document.getElementById('invModal');
+        document.getElementById('investBtn').addEventListener('click', () => invModal.classList.add('open'));
+        document.getElementById('invClose').addEventListener('click', () => invModal.classList.remove('open'));
+        invModal.addEventListener('click', (e) => { if (e.target === invModal) invModal.classList.remove('open'); });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') { closeCalc(); invModal.classList.remove('open'); }
+        });
+
+        // Клавиатура калькулятора
+        document.querySelectorAll('.calc-keys button').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const act = btn.dataset.act;
+                if (act === 'clear') resetScreen();
+                else if (act === 'back') backspace();
+                else if (act === 'equals') equals();
+                else if (btn.dataset.val !== undefined) press(btn.dataset.val);
+            });
+        });
+
+        // Эффект "дрожания" при наведении на название (трэш-эффект)
+        const title = document.querySelector('h1');
+        if (title) {
+            title.addEventListener('mouseenter', () => {
+                title.style.transform = 'skew(2deg, 1deg)';
+                setTimeout(() => { title.style.transform = ''; }, 150);
+            });
+        }
+
+        // === Счётчик посещений (глобальный, через бесплатный API, с локальным фолбэком) ===
+        (function () {
+            const el = document.getElementById('visitCount');
+            if (!el) return;
+            const fmt = (n) => Number(n).toLocaleString('ru-RU');
+            function localFallback() {
+                const n = parseInt(localStorage.getItem('gv_pageviews') || '0', 10) + 1;
+                localStorage.setItem('gv_pageviews', String(n));
+                el.textContent = fmt(n);
+            }
+            fetch('https://abacus.jasoncameron.dev/hit/govno-technologies/pageviews')
+                .then((r) => (r.ok ? r.json() : Promise.reject()))
+                .then((d) => { el.textContent = fmt(d.value); })
+                .catch(localFallback);
+        })();
+
+        console.log("%c⚠️ Говно-Technologies — мы предупредили ⚠️", "color: #e34c26; font-size: 16px; font-weight: bold;");
+        console.log("Надёжность? Нет, не слышали. Калькулятор — тем более.");
+    </script>
+</body>
+</html>
