@@ -517,6 +517,10 @@
             .investor-name { font-size: 0.7rem; max-width: 100px; padding: 0.32rem 0.6rem; }
             .investors-title { font-size: 1.05rem; }
             .invest-btn { font-size: 0.8rem; padding: 0.6rem 1rem; }
+            .token { padding: 1.2rem 1rem; }
+            .token-logo { width: 120px; height: 120px; }
+            .token-btn { font-size: 1.05rem; padding: 0.85rem 1.4rem; }
+            .tstat-val { font-size: 1rem; }
         }
 
         /* === Счётчик посещений (для рекламодателей) === */
@@ -547,6 +551,79 @@
             opacity: 0.55;
             font-size: 0.62rem;
         }
+
+        /* === $GOVNO токен === */
+        .token {
+            margin: 3rem auto 1rem;
+            max-width: 560px;
+            background: linear-gradient(160deg, #1a1712, #14100c);
+            border: 1px solid #3a2a1a;
+            border-left: 5px solid #e34c26;
+            border-radius: 28px;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.45), inset 0 0 60px rgba(227,76,38,0.05);
+            text-align: center;
+        }
+        .token-logo {
+            width: 150px; height: 150px;
+            border-radius: 50%;
+            border: 3px solid #e34c26;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+        }
+        .token-badge {
+            display: inline-block;
+            margin: 1rem 0 0.3rem;
+            font-size: 0.72rem; font-weight: 800; letter-spacing: 2px;
+            color: #ffb347; background: #2a1e12;
+            padding: 0.35rem 1rem; border-radius: 20px;
+        }
+        .token-title {
+            font-size: clamp(2.4rem, 9vw, 3.6rem); font-weight: 900;
+            line-height: 1; margin: 0.2rem 0;
+            background: linear-gradient(135deg, #ffd98a, #e34c26);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        .token-sub { font-size: 0.85rem; color: #cdbfae; margin-bottom: 1.3rem; }
+        .token-stats {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 0.7rem;
+            margin-bottom: 1.5rem;
+        }
+        .tstat {
+            flex: 1 1 130px; min-width: 0;
+            background: #0f0d0a; border: 1px solid #2e2a24; border-radius: 16px;
+            padding: 0.8rem 0.5rem;
+            display: flex; flex-direction: column; gap: 3px;
+        }
+        .tstat-val { font-size: 1.15rem; font-weight: 800; color: #ff7a45; }
+        .tstat-lbl { font-size: 0.6rem; color: #9c8f80; text-transform: uppercase; letter-spacing: 0.5px; }
+        .token-btn {
+            display: inline-block;
+            background: #e34c26; color: #0a0c0f;
+            font-weight: 900; font-size: 1.25rem; letter-spacing: 1px;
+            font-family: 'Space Grotesk', monospace;
+            text-decoration: none; text-transform: uppercase;
+            padding: 1rem 2rem; border-radius: 4px;
+            box-shadow: 6px 6px 0 #5e2a1a;
+            transition: 0.15s ease;
+        }
+        .token-btn:hover { background: #ff7043; transform: translate(-2px,-2px); box-shadow: 8px 8px 0 #3e1e12; }
+        .token-btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 #3e1e12; }
+        .token-ca {
+            margin: 1.2rem 0 0.4rem; font-size: 0.7rem; color: #8f8272;
+            display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap;
+        }
+        .token-ca code {
+            background: #0f0d0a; border: 1px solid #2e2a24; border-radius: 8px;
+            padding: 0.3rem 0.5rem; color: #cdbfae; font-size: 0.6rem;
+            word-break: break-all; max-width: 100%;
+        }
+        .token-copy {
+            background: #2a1e12; color: #ffb347; border: 1px solid #3a2a1a;
+            border-radius: 8px; padding: 0.3rem 0.7rem; font-size: 0.65rem;
+            cursor: pointer; font-family: 'Space Grotesk', monospace;
+        }
+        .token-copy:hover { background: #e34c26; color: #0a0c0f; }
+        .token-note { margin-top: 0.9rem; font-size: 0.66rem; color: #7a6f62; }
     </style>
 </head>
 <body>
@@ -611,6 +688,25 @@
                 </div>
             </div>
             <button class="invest-btn" id="investBtn">💰 стать инвестором говна</button>
+        </div>
+
+        <!-- $GOVNO — наш мем-токен на pump.fun -->
+        <div class="token">
+            <img class="token-logo" src="govno_coin.png" alt="$GOVNO эмблема" width="150" height="150" loading="lazy">
+            <div class="token-badge">💩 ОФИЦИАЛЬНЫЙ ТОКЕН 💩</div>
+            <h2 class="token-title">$GOVNO</h2>
+            <div class="token-sub">Головной Офис Вайбкодинга На Отъ€би$ь — теперь в блокчейне 🚀</div>
+            <div class="token-stats">
+                <div class="tstat"><span class="tstat-val">📉 −100%</span><span class="tstat-lbl">потенциал роста</span></div>
+                <div class="tstat"><span class="tstat-val">1 000 000 000</span><span class="tstat-lbl">токенов (все бесполезны)</span></div>
+                <div class="tstat"><span class="tstat-val">🤡 0%</span><span class="tstat-lbl">полезность</span></div>
+            </div>
+            <a class="token-btn" href="https://pump.fun/coin/9UVJopHnbhD5j4k65E7kViduumsTQkikfEN2gKVcpump" target="_blank" rel="noopener">🚀 КУПИТЬ $GOVNO 🚀</a>
+            <div class="token-ca">
+                Контракт: <code>9UVJopHnbhD5j4k65E7kViduumsTQkikfEN2gKVcpump</code>
+                <button class="token-copy" onclick="navigator.clipboard.writeText('9UVJopHnbhD5j4k65E7kViduumsTQkikfEN2gKVcpump');this.textContent='скопировано ✓';setTimeout(()=>this.textContent='копировать',1500)">копировать</button>
+            </div>
+            <div class="token-note">⚠️ Не финансовый совет. Вообще не совет. График обещает только вниз 📉</div>
         </div>
 
         <button class="cta-button" id="surpriseBtn">
